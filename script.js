@@ -131,4 +131,71 @@
     setArc(0, 0);
     startPhase();
   })();
+
+  /* ============ Waitlist signup (Formspree) ============
+     Submits over fetch so the visitor never leaves the page. The <form> keeps a
+     real action/method, so if this script fails to load or throws, the browser
+     falls back to a normal POST and Formspree renders its own confirmation. */
+  (function () {
+    var form = document.getElementById('waitlist-form');
+    var msg = document.getElementById('waitlist-msg');
+    if (!form || !msg || !window.fetch) return;
+
+    var btn = form.querySelector('button[type="submit"]');
+    var input = form.querySelector('input[name="email"]');
+    var BTN_LABEL = btn ? btn.textContent : '';
+
+    function setMessage(text, kind) {
+      msg.textContent = text;
+      msg.className = 'signup-msg' + (kind ? ' signup-msg-' + kind : '');
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (btn && btn.disabled) return;
+
+      setMessage('', '');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Adding you…';
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+        .then(function (res) {
+          // Formspree returns the validation detail in the body on 4xx.
+          return res.json().catch(function () { return {}; })
+            .then(function (body) { return { ok: res.ok, body: body }; });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            form.reset();
+            setMessage(
+              "You're on the list. We'll email you once — the day NIX goes live.",
+              'success'
+            );
+            if (btn) btn.textContent = 'You’re in';
+            return;
+          }
+          var errors = result.body && result.body.errors;
+          var detail = errors && errors.length && errors[0].message;
+          setMessage(
+            detail ? detail.charAt(0).toUpperCase() + detail.slice(1) : "That didn't go through. Check the address and try again.",
+            'error'
+          );
+          if (btn) { btn.disabled = false; btn.textContent = BTN_LABEL; }
+          if (input) input.focus();
+        })
+        .catch(function () {
+          setMessage(
+            "Couldn't reach the server. Check your connection and try again.",
+            'error'
+          );
+          if (btn) { btn.disabled = false; btn.textContent = BTN_LABEL; }
+        });
+    });
+  })();
 })();

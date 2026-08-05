@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <a href="#performance">Performance Mode</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#download" class="btn btn-primary btn-sm">Download NIX</a>
+      <a href="#waitlist" class="btn btn-primary btn-sm">Get early access</a>
     </div>
   </header>
 
@@ -47,7 +47,7 @@
           <h1 class="reveal d1">Quit Zyn without <em>losing your edge.</em></h1>
           <p class="lede reveal d2">NIX replaces willpower and shame with a personalized taper plan, an hour-by-hour roadmap through withdrawal, and real-time craving support — built for people who can't afford to slow down.</p>
           <div class="hero-actions reveal d3">
-            <a href="#download" class="btn btn-primary">Download NIX</a>
+            <a href="#waitlist" class="btn btn-primary">Get early access</a>
             <a href="#protocol" class="btn btn-ghost">See the protocol</a>
           </div>
           <p class="hero-note reveal d4">No lectures. No shame. Just a protocol that works.</p>
@@ -417,8 +417,8 @@
       </div>
     </section>
 
-    <!-- ======================= FINAL CTA ======================= -->
-    <section class="final" id="download">
+    <!-- ======================= FINAL CTA / WAITLIST ======================= -->
+    <section class="final" id="waitlist">
       <div class="final-glow" aria-hidden="true"></div>
       <div class="container final-inner">
         <svg class="mark mark-lg reveal" viewBox="0 0 32 32" aria-hidden="true">
@@ -426,11 +426,44 @@
           <path d="M10 22 L22 10 M10 10 L22 22" stroke="var(--mint)" stroke-width="3.5" stroke-linecap="round"/>
         </svg>
         <h2 class="reveal d1">Quit Zyn. Keep your edge.</h2>
-        <p class="section-lede reveal d2">The hardest 72 hours of your quit are already mapped. Start the protocol tonight — your first craving with backup is nothing like your last one without it.</p>
-        <div class="hero-actions center reveal d3">
-          <a href="#" class="btn btn-primary btn-lg">Download NIX</a>
+        <p class="section-lede reveal d2">NIX is launching on iOS soon. Leave your email and you'll be first in — the hardest 72 hours of your quit are already mapped.</p>
+
+        <div class="signup reveal d3">
+          <!-- Posts to Formspree over fetch (see script.js) so the visitor stays on
+               the page. action/method are the no-JS fallback: if the script fails,
+               the browser posts normally and Formspree shows its own confirmation. -->
+          <form
+            id="waitlist-form"
+            class="signup-form"
+            action="https://formspree.io/f/xrpzgyky"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="New NIX early-access signup" />
+            <!-- Honeypot: bots fill hidden fields, humans don't. Formspree drops these. -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <label class="sr-only" for="waitlist-email">Email address</label>
+            <div class="signup-row">
+              <input
+                type="email"
+                id="waitlist-email"
+                name="email"
+                required
+                autocomplete="email"
+                inputmode="email"
+                placeholder="you@work.com"
+                class="signup-input"
+              />
+              <button type="submit" class="btn btn-primary btn-lg signup-btn">
+                Get early access
+              </button>
+            </div>
+          </form>
+
+          <p class="signup-msg" id="waitlist-msg" role="status" aria-live="polite"></p>
         </div>
-        <p class="hero-note reveal d4">iOS · No account required · Your data stays on your device</p>
+
+        <p class="hero-note reveal d4">iOS first · One email at launch, nothing else · No account required</p>
       </div>
     </section>
   </main>
@@ -450,6 +483,9 @@
         <a href="#sos">Craving SOS</a>
         <a href="#performance">Performance Mode</a>
         <a href="#faq">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
       </div>
       <p class="footer-fine">© 2026 NIX. NIX is a behavioral support tool, not a medical device. Zyn, Velo, On! and Rogue are trademarks of their respective owners; NIX is not affiliated with or endorsed by them.</p>
     </div>

@@ -1243,3 +1243,93 @@ details[open] .faq-x { transform: rotate(45deg); }
 @media (max-width: 360px) {
   .nav .btn-sm { padding: 8px 11px; font-size: 0.78rem; }
 }
+
+/* ============================================================
+   WAITLIST SIGNUP  (final CTA section)
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.signup {
+  width: 100%;
+  max-width: 560px;
+  margin: 32px auto 0;
+}
+
+.signup-form { width: 100%; }
+
+.signup-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.signup-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 17px 20px;
+  font-family: var(--font);
+  font-size: 1.02rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.signup-input::placeholder { color: var(--muted-2); }
+
+.signup-input:hover { border-color: var(--muted-2); }
+
+.signup-input:focus-visible {
+  border-color: var(--mint);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 3px var(--mint-dim);
+}
+
+.signup-input:invalid:not(:placeholder-shown) { border-color: var(--ember); }
+
+.signup-btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.signup-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Honeypot — must stay reachable to bots but invisible to humans */
+.signup-form input[name="_gotcha"] {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.signup-msg {
+  min-height: 1.4em;
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.signup-msg-success { color: var(--mint); }
+.signup-msg-error { color: var(--ember); }
+
+@media (max-width: 560px) {
+  .signup-row { flex-direction: column; }
+  .signup-input { border-radius: var(--radius); text-align: center; }
+  .signup-btn { width: 100%; }
+}
