@@ -135,7 +135,16 @@
   /* ============ Waitlist signup (Formspree) ============
      Submits over fetch so the visitor never leaves the page. The <form> keeps a
      real action/method, so if this script fails to load or throws, the browser
-     falls back to a normal POST and Formspree renders its own confirmation. */
+     falls back to a normal POST and Formspree renders its own confirmation.
+
+     TEMPORARY — this whole section is a pre-launch placeholder. At launch,
+     replace the #waitlist form in index.html with a plain App Store link and
+     delete this block; nothing else depends on it.
+
+     Formspree's free plan caps at 50 submissions/month. Past that it rejects
+     with 429, which would otherwise look like a silent success to the visitor
+     and quietly cost signups — so that case is handled explicitly and falls
+     back to the contact address. */
   (function () {
     var form = document.getElementById('waitlist-form');
     var msg = document.getElementById('waitlist-msg');
@@ -144,10 +153,22 @@
     var btn = form.querySelector('button[type="submit"]');
     var input = form.querySelector('input[name="email"]');
     var BTN_LABEL = btn ? btn.textContent : '';
+    var CONTACT = 'contact@agl-labs.com';
 
-    function setMessage(text, kind) {
-      msg.textContent = text;
+    /* Builds the message via DOM nodes rather than innerHTML: some of this text
+       comes from Formspree's response and must never be parsed as markup. */
+    function setMessage(text, kind, mailto) {
+      msg.textContent = '';
       msg.className = 'signup-msg' + (kind ? ' signup-msg-' + kind : '');
+      msg.appendChild(document.createTextNode(text));
+      if (mailto) {
+        msg.appendChild(document.createTextNode(' '));
+        var a = document.createElement('a');
+        a.href = 'mailto:' + CONTACT + '?subject=' + encodeURIComponent('NIX early access');
+        a.textContent = CONTACT;
+        a.className = 'signup-link';
+        msg.appendChild(a);
+      }
     }
 
     form.addEventListener('submit', function (event) {
@@ -166,9 +187,9 @@
         headers: { Accept: 'application/json' },
       })
         .then(function (res) {
-          // Formspree returns the validation detail in the body on 4xx.
+          // Formspree returns the detail in the body on 4xx.
           return res.json().catch(function () { return {}; })
-            .then(function (body) { return { ok: res.ok, body: body }; });
+            .then(function (body) { return { ok: res.ok, status: res.status, body: body }; });
         })
         .then(function (result) {
           if (result.ok) {
@@ -180,13 +201,44 @@
             if (btn) btn.textContent = 'You’re in';
             return;
           }
+
+          function restore() {
+            if (btn) { btn.disabled = false; btn.textContent = BTN_LABEL; }
+          }
+
+          // 429 = the form's monthly submission quota is used up. Nothing the
+          // visitor can fix by retrying, so send them to email instead of
+          // pretending the address was captured.
+          if (result.status === 429) {
+            setMessage(
+              "We've hit our signup cap for this month. Email us and we'll add you by hand:",
+              'error',
+              true
+            );
+            restore();
+            return;
+          }
+
+          // Formspree reports field errors as errors[], and form-level
+          // problems (disabled form, deleted form) as a top-level error string.
           var errors = result.body && result.body.errors;
-          var detail = errors && errors.length && errors[0].message;
+          var detail = (errors && errors.length && errors[0].message) ||
+            (typeof (result.body && result.body.error) === 'string' ? result.body.error : '');
+
+          // 403 means the form itself is blocked or gone — again not the
+          // visitor's fault, so offer the fallback rather than "try again".
+          if (result.status === 403) {
+            setMessage("Our signup form is temporarily down. Email us instead:", 'error', true);
+            restore();
+            return;
+          }
+
           setMessage(
-            detail ? detail.charAt(0).toUpperCase() + detail.slice(1) : "That didn't go through. Check the address and try again.",
+            detail ? detail.charAt(0).toUpperCase() + detail.slice(1)
+                   : "That didn't go through. Check the address and try again.",
             'error'
           );
-          if (btn) { btn.disabled = false; btn.textContent = BTN_LABEL; }
+          restore();
           if (input) input.focus();
         })
         .catch(function () {

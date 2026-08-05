@@ -1333,3 +1333,9 @@ details[open] .faq-x { transform: rotate(45deg); }
   .signup-input { border-radius: var(--radius); text-align: center; }
   .signup-btn { width: 100%; }
 }
+
+.signup-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
