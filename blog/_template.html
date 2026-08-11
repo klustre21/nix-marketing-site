@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================================
+  POST TEMPLATE — copy this file to blog/<slug>.html and fill it in.
+  The leading underscore keeps it out of the post list. Never edit this file
+  to publish; never publish this file itself.
+
+  Replace every {{PLACEHOLDER}}. Checklist before opening a PR:
+
+    1. {{TITLE}}        — under ~60 chars so it isn't truncated in search
+    2. {{DESCRIPTION}}  — 140-160 chars, written to be clicked, not stuffed
+    3. {{SLUG}}         — matches the filename exactly, lowercase-hyphenated
+    4. {{ISO_DATE}}     — 2026-08-14 format, in BOTH the JSON-LD and <time>
+    5. {{HUMAN_DATE}}   — 14 August 2026
+    6. Body             — replace the whole BODY:START/END region
+    7. Sources          — every health claim cites a primary authority
+    8. Add the post to blog/index.html between POSTS:START/END
+    9. Add the post to /sitemap.xml
+
+  Rules that are not negotiable:
+    - Byline is AGL Labs. NEVER invent an author, a credential, or a
+      "medically reviewed by" line. A fabricated credential is
+      misrepresentation, and App Store reviewers can reach this page.
+    - Every factual health claim cites CDC, NIH, NCI or peer-reviewed work.
+    - Never claim a cure, a guaranteed outcome, or a success rate NIX has
+      not measured.
+    - Never moralize about nicotine use. The reader is an adult.
+    - Open by answering the question in the first two sentences — that is
+      the passage AI assistants extract and cite.
+  ============================================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITLE}} — NIX</title>
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0C0F'/%3E%3Ccircle cx='16' cy='16' r='10.5' fill='none' stroke='%23242A32' stroke-width='3.4'/%3E%3Cpath d='M5.5 16a10.5 10.5 0 0 1 21 0' fill='none' stroke='%232DD4BF' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='6.4' fill='%2312161B'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=6" />
+  <link rel="stylesheet" href="../legal.css?v=1" />
+  <link rel="stylesheet" href="../blog.css?v=1" />
+  <link rel="canonical" href="https://nixthepouch.com/blog/{{SLUG}}.html" />
+  <meta property="og:url" content="https://nixthepouch.com/blog/{{SLUG}}.html" />
+  <meta property="og:title" content="{{TITLE}} — NIX" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": "https://nixthepouch.com/blog/{{SLUG}}.html#post",
+    "headline": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "url": "https://nixthepouch.com/blog/{{SLUG}}.html",
+    "datePublished": "{{ISO_DATE}}",
+    "dateModified": "{{ISO_DATE}}",
+    "inLanguage": "en-US",
+    "author": { "@id": "https://nixthepouch.com/#organization" },
+    "publisher": { "@id": "https://nixthepouch.com/#organization" },
+    "isPartOf": { "@id": "https://nixthepouch.com/blog/#blog" },
+    "mainEntityOfPage": "https://nixthepouch.com/blog/{{SLUG}}.html"
+  }
+  </script>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="wordmark" aria-label="NIX home">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="var(--surface)"/>
+          <circle cx="16" cy="16" r="10.5" fill="none" stroke="#242a32" stroke-width="3.4"/>
+          <path d="M5.5 16a10.5 10.5 0 0 1 21 0" fill="none" stroke="var(--mint)"
+                stroke-width="3.4" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="6.4" fill="#12161b" stroke="#2b323a" stroke-width="1"/>
+        </svg>
+        <span>NIX</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html#protocol">The Protocol</a>
+        <a href="../index.html#sos">Craving SOS</a>
+        <a href="../index.html#performance">Performance Mode</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="./">Blog</a>
+      </nav>
+      <a href="../index.html#waitlist" class="btn btn-primary btn-sm">Get early access</a>
+    </div>
+  </header>
+
+  <main class="legal-main">
+    <div class="container container-narrow">
+      <a href="./" class="legal-back">← All posts</a>
+
+      <div class="legal-header">
+        <h1>{{TITLE}}</h1>
+        <p class="post-byline">
+          <time datetime="{{ISO_DATE}}">{{HUMAN_DATE}}</time> · AGL Labs
+        </p>
+      </div>
+
+      <div class="legal-body">
+
+        <!-- BODY:START — replace everything to BODY:END.
+
+             Open with the direct answer in two sentences. Then structure with <h2>.
+             Cite inline with <a href="…">, and repeat the source in Sources below.
+             Target 1,200-1,800 words. -->
+
+        <p class="legal-lede">The direct answer, in one or two sentences. This is the
+        passage an AI assistant is most likely to lift and cite, so it has to stand alone
+        without the rest of the page.</p>
+
+        <h2>A section heading that reads like a question someone typed</h2>
+        <p>Body copy. Short declaratives. Concrete numbers over adjectives. Every factual
+        health claim gets an inline citation, like
+        <a href="https://www.cdc.gov/">this one</a>, and a matching entry in Sources.</p>
+
+        <div class="legal-callout">
+          <p>Use a callout for the one thing a skimmer must not miss. At most one or two
+          per post — they stop working when everything is highlighted.</p>
+        </div>
+
+        <h2>Another section</h2>
+        <p>Link to relevant existing sections from inside new content, for example
+        <a href="../index.html#sos">Craving SOS</a> or
+        <a href="../index.html#protocol">the taper protocol</a>. Never add a link to the
+        marketing page's own prose to make this work — that page is off limits.</p>
+
+        <!-- BODY:END -->
+
+        <div class="post-cta">
+          <p><strong>NIX turns this into a plan.</strong> A taper built from your own
+          logged habit, an hour-by-hour roadmap through withdrawal, and craving support
+          that works in the five minutes that matter.</p>
+          <p><a href="../index.html#waitlist" class="btn btn-primary btn-sm">Get early access</a></p>
+        </div>
+
+        <div class="post-sources">
+          <h2>Sources</h2>
+          <ol>
+            <li>Author or organization. <em>Title of the page or paper</em>. Publisher,
+              year. <a href="https://www.nih.gov/">URL</a></li>
+            <!-- One entry per inline citation. If a claim has no source, cut the claim. -->
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="wordmark wordmark-footer">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="var(--surface)"/>
+          <circle cx="16" cy="16" r="10.5" fill="none" stroke="#242a32" stroke-width="3.4"/>
+          <path d="M5.5 16a10.5 10.5 0 0 1 21 0" fill="none" stroke="var(--mint)"
+                stroke-width="3.4" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="6.4" fill="#12161b" stroke="#2b323a" stroke-width="1"/>
+        </svg>
+        <span>NIX</span>
+      </div>
+      <p class="footer-tag">No lectures. No shame. Just a protocol that works.</p>
+      <div class="footer-links">
+        <a href="../index.html#protocol">The Protocol</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../support.html">Support</a>
+      </div>
+      <p class="footer-fine">© 2026 NIX. NIX is a behavioral support tool, not a medical device. Zyn, Velo, On! and Rogue are trademarks of their respective owners; NIX is not affiliated with or endorsed by them.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* blog.css — loaded only by /blog/. Kept separate from legal.css on purpose:
+   legal.css is loaded by privacy/terms/support, which are protected pages, and a
+   shared stylesheet is a way to change them without touching their HTML.
+
+   Everything here builds on legal.css primitives and styles.css tokens. */
+
+/* ---------- post listing ---------- */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 0;
+}
+
+.post-item {
+  border-top: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.post-item:last-child { border-bottom: 1px solid var(--line); }
+
+.post-item h2 {
+  font-size: 1.32rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.post-item h2 a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.post-item h2 a:hover { color: var(--mint); }
+
+.post-item .post-meta {
+  color: var(--muted-2);
+  font-size: 0.86rem;
+  margin: 0 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.post-item .post-excerpt {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Empty state — /blog/ must render correctly with zero posts. */
+.blog-empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 40px 28px;
+  text-align: center;
+  margin: 40px 0 0;
+}
+
+.blog-empty p {
+  color: var(--muted-2);
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+/* ---------- individual post ---------- */
+
+.post-byline {
+  color: var(--muted-2);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Sources block. Every health claim on a YMYL post carries a citation, so this is
+   part of the template rather than something a writer remembers to add. */
+.post-sources {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.post-sources h2 {
+  font-size: 1.02rem;
+  margin: 0 0 12px;
+}
+
+.post-sources ol {
+  padding-left: 1.15rem;
+  margin: 0;
+}
+
+.post-sources li {
+  color: var(--muted-2);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 8px 0;
+}
+
+/* Closing call-to-action at the foot of a post. */
+.post-cta {
+  margin-top: 48px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--mint);
+  border-radius: var(--radius);
+}
+
+.post-cta p { margin: 0 0 16px; }
+.post-cta p:last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .post-item { padding: 22px 0; }
+  .post-item h2 { font-size: 1.18rem; }
+  .post-cta { padding: 22px; }
+}

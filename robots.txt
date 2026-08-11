@@ -1,8 +1,12 @@
 # nixthepouch.com
 
 # Conventional crawlers — everything is public, nothing to hide.
+# The one exception is the post template: scaffolding with placeholder copy, not a page.
+# Jekyll on GitHub Pages normally refuses to publish underscore-prefixed files, so the
+# Disallow is a second lock rather than the only one.
 User-agent: *
 Allow: /
+Disallow: /blog/_template.html
 
 # AI assistants and answer engines are allowed deliberately, not by default.
 # Being cited by ChatGPT, Claude, Perplexity and Google AI Overviews is a primary
