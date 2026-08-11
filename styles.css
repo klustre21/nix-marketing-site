@@ -912,6 +912,11 @@ h3 {
 
 .phone-today { width: 300px; margin: 0 auto; }
 
+/* .phone-shot is wrapped in <picture> to serve WebP with a PNG fallback. The wrapper
+   must generate no box: the img sizes with height:100%, which resolves against its
+   parent, and a <picture> in between would collapse it. */
+picture { display: contents; }
+
 .phone-shot {
   display: block;
   width: 100%;

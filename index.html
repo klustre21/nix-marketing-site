@@ -12,10 +12,98 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="preload" as="image" href="assets/today-screen.webp" type="image/webp" fetchpriority="high" />
   <link rel="canonical" href="https://nixthepouch.com/" />
   <meta property="og:url" content="https://nixthepouch.com/" />
   <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://nixthepouch.com/#organization",
+        "name": "AGL Labs LLC",
+        "url": "https://nixthepouch.com/",
+        "email": "contact@agl-labs.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://nixthepouch.com/#website",
+        "url": "https://nixthepouch.com/",
+        "name": "NIX",
+        "publisher": {
+          "@id": "https://nixthepouch.com/#organization"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://nixthepouch.com/#app",
+        "name": "NIX",
+        "applicationCategory": "HealthApplication",
+        "applicationSubCategory": "Smoking Cessation",
+        "operatingSystem": "iOS",
+        "description": "A precision quit app for nicotine pouches. A personalized taper plan, an hour-by-hour roadmap through withdrawal, and real-time craving support.",
+        "url": "https://nixthepouch.com/",
+        "publisher": {
+          "@id": "https://nixthepouch.com/#organization"
+        },
+        "isAccessibleForFree": false
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://nixthepouch.com/#faq",
+        "isPartOf": {
+          "@id": "https://nixthepouch.com/#website"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why not just quit cold turkey for free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can — most people have tried, and most cold-turkey attempts fail because there's no structure for hour 30, when it gets hard. NIX gives you a taper your brain can keep up with and an hour-by-hour roadmap, so you always know the next move instead of negotiating with yourself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will quitting wreck my focus at work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "That fear is exactly what Performance Mode is built for. It front-loads your remaining allowance around your protected work hours, so withdrawal fog lands in the hours that matter least — not during your 10 AM deep-work block."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "It's not free. Why pay to quit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A year of NIX costs less than a single month of pouches for a typical habit, and it tracks exactly how much money you get back from day one. Most users see the app pay for itself inside the first two weeks — in cash, not vibes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when I slip?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You log it, your Recovery Score dips a few points, and the plan adjusts. No reset, no lecture, no red screen of shame. A slip is one data point in a working protocol — and the data says people who don't spiral after a slip are the ones who actually quit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where does my data go?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your logs, triggers and history stay on your device, encrypted, and there is no account or user database anywhere. The one exception is the AI coach: to answer you, it sends your message and quit context to our server and on to OpenAI. No name, email or identity is attached — we don't have those — and nothing is stored afterwards. Everything else never leaves your phone. The Privacy Policy spells out exactly what goes where."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -306,7 +394,10 @@
           <!-- Phone mockup: Today tab (real app screenshot) -->
           <div class="split-visual reveal d3">
             <div class="phone phone-today">
-              <img class="phone-shot" src="assets/today-screen.png" alt="NIX app — Today screen showing daily pouch allowance, recovery score, and a predicted risk window" />
+              <picture>
+                <source srcset="assets/today-screen.webp" type="image/webp" />
+                <img class="phone-shot" src="assets/today-screen.png" fetchpriority="high" decoding="async" alt="NIX app — Today screen showing daily pouch allowance, recovery score, and a predicted risk window" />
+              </picture>
             </div>
           </div>
         </div>

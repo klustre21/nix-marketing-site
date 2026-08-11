@@ -1,0 +1,42 @@
+# nixthepouch.com
+
+# Conventional crawlers — everything is public, nothing to hide.
+User-agent: *
+Allow: /
+
+# AI assistants and answer engines are allowed deliberately, not by default.
+# Being cited by ChatGPT, Claude, Perplexity and Google AI Overviews is a primary
+# acquisition channel for this site — a person asking "how do I quit Zyn" is exactly
+# the reader NIX is for. Blocking these would trade away that channel to protect
+# marketing copy that is already public.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://nixthepouch.com/sitemap.xml

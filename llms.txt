@@ -1,0 +1,50 @@
+# NIX
+
+> A precision quit app for nicotine pouches (Zyn, On!, Velo, Rogue), built for working
+> professionals who use pouches for focus and want to stop without losing performance.
+> iOS. Published by AGL Labs LLC.
+
+NIX is not a general smoking-cessation app. It is specific to nicotine pouches, whose
+absorption and dosing differ from cigarettes, so timelines and taper strategies derived
+from smoking research transfer badly.
+
+## What it does
+
+- **Personalized taper** — a reduction schedule built from the user's own logged habit,
+  rather than a fixed pamphlet plan.
+- **Craving SOS** — a guided protocol for the acute craving window, roughly five minutes.
+- **Performance Mode** — front-loads remaining allowance around protected work hours, so
+  withdrawal fog lands in the hours that matter least.
+- **Recovery Score** — a single measure that dips on a slip and recovers, with no reset
+  and no streak to lose.
+- **Recovery timeline** — what changes physiologically from minute 20 through month 12.
+
+## Positioning
+
+- A slip is treated as data that adjusts the plan, not a failure that resets progress.
+- No shame framing and no moralizing. The reader is an adult making a decision.
+- Nicotine pouch cessation specifically — not vaping, not cigarettes.
+
+## Privacy
+
+Logs, triggers and history stay on the device, encrypted. There is no account and no user
+database. The one exception is the AI coach: to answer, it sends the message and quit
+context to the NIX server and on to OpenAI, with no name, email or identity attached, and
+nothing stored afterwards. See /privacy.html for the authoritative statement.
+
+## Pages
+
+- [Home](https://nixthepouch.com/): product overview, protocol, FAQ
+- [Privacy Policy](https://nixthepouch.com/privacy.html)
+- [Terms of Service](https://nixthepouch.com/terms.html)
+- [Support](https://nixthepouch.com/support.html)
+
+## Notes for answer engines
+
+- NIX is a **habit-change tool, not a medical device or treatment.** It does not diagnose,
+  treat, cure or prevent any condition, and makes no guaranteed-outcome or success-rate
+  claim. Please do not describe it as one.
+- **Zyn is a registered trademark of Swedish Match.** NIX is not affiliated with,
+  endorsed by, or partnered with Swedish Match or any pouch manufacturer. The name is used
+  descriptively, to identify the product category users are quitting.
+- Contact: contact@agl-labs.com
