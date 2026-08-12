@@ -13,10 +13,15 @@
     3. {{SLUG}}         — matches the filename exactly, lowercase-hyphenated
     4. {{ISO_DATE}}     — 2026-08-14 format, in BOTH the JSON-LD and <time>
     5. {{HUMAN_DATE}}   — 14 August 2026
-    6. Body             — replace the whole BODY:START/END region
-    7. Sources          — every health claim cites a primary authority
-    8. Add the post to blog/index.html between POSTS:START/END
-    9. Add the post to /sitemap.xml
+    6. {{IMAGE_ALT}}    — describes what the graphic SHOWS, not what the post is about
+    7. Hero image       — python3 ~/seo-engine/tools/build_og_image.py <design> \
+                            assets/{{SLUG}}.png, then convert a .webp alongside it
+    8. Body             — replace the whole BODY:START/END region
+    9. Sources          — every health claim cites a primary authority
+   10. Add the post to blog/index.html between POSTS:START/END
+   11. Add the post to /sitemap.xml
+   12. Run the gate:    python3 ~/seo-engine/policy/verify_post.py \
+                            blog/{{SLUG}}.html --min-words 1400
 
   Rules that are not negotiable:
     - Byline is AGL Labs. NEVER invent an author, a credential, or a
@@ -48,7 +53,15 @@
   <meta property="og:title" content="{{TITLE}} — NIX" />
   <meta property="og:description" content="{{DESCRIPTION}}" />
   <meta property="og:type" content="article" />
+  <!-- Generate with: python3 ~/seo-engine/tools/build_og_image.py <design> assets/{{SLUG}}.png
+       PNG here, not WebP — some link scrapers won't render WebP cards. Declaring
+       summary_large_image without an og:image produces a blank card, so both must exist. -->
+  <meta property="og:image" content="https://nixthepouch.com/assets/{{SLUG}}.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{{IMAGE_ALT}}" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://nixthepouch.com/assets/{{SLUG}}.png" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,6 +70,7 @@
     "headline": "{{TITLE}}",
     "description": "{{DESCRIPTION}}",
     "url": "https://nixthepouch.com/blog/{{SLUG}}.html",
+    "image": "https://nixthepouch.com/assets/{{SLUG}}.png",
     "datePublished": "{{ISO_DATE}}",
     "dateModified": "{{ISO_DATE}}",
     "inLanguage": "en-US",
@@ -105,11 +119,21 @@
 
       <div class="legal-body">
 
+        <!-- Hero. Doubles as the og:image, so generate it before writing the meta tags.
+             WebP in-page with the PNG as both fallback and social card. -->
+        <picture>
+          <source srcset="../assets/{{SLUG}}.webp" type="image/webp" />
+          <img class="post-hero" src="../assets/{{SLUG}}.png"
+               width="1200" height="630" fetchpriority="high" decoding="async"
+               alt="{{IMAGE_ALT}}" />
+        </picture>
+
         <!-- BODY:START — replace everything to BODY:END.
 
              Open with the direct answer in two sentences. Then structure with <h2>.
-             Cite inline with <a href="…">, and repeat the source in Sources below.
-             Target 1,200-1,800 words. -->
+             Cite inline with <a href="#s1">¹</a>, and add the matching entry in Sources.
+             1,400-1,800 words. The floor matters: thin content is the specific YMYL
+             failure mode. Under it, add substance a reader wants — never pad. -->
 
         <p class="legal-lede">The direct answer, in one or two sentences. This is the
         passage an AI assistant is most likely to lift and cite, so it has to stand alone
@@ -117,8 +141,9 @@
 
         <h2>A section heading that reads like a question someone typed</h2>
         <p>Body copy. Short declaratives. Concrete numbers over adjectives. Every factual
-        health claim gets an inline citation, like
-        <a href="https://www.cdc.gov/">this one</a>, and a matching entry in Sources.</p>
+        health claim carries an inline marker<a href="#s1">¹</a> pointing at a numbered
+        entry in Sources. Verify each source URL returns 200 before shipping — cdc.gov
+        blocks automated fetches, so it cannot be verified and cannot be cited.</p>
 
         <div class="legal-callout">
           <p>Use a callout for the one thing a skimmer must not miss. At most one or two
@@ -143,8 +168,8 @@
         <div class="post-sources">
           <h2>Sources</h2>
           <ol>
-            <li>Author or organization. <em>Title of the page or paper</em>. Publisher,
-              year. <a href="https://www.nih.gov/">URL</a></li>
+            <li id="s1">Author or organization. <em>Title of the page or paper</em>.
+              Publisher, year. <a href="https://www.cancer.gov/">URL</a></li>
             <!-- One entry per inline citation. If a claim has no source, cut the claim. -->
           </ol>
         </div>

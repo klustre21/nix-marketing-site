@@ -97,6 +97,27 @@
   margin: 8px 0;
 }
 
+/* legal.css styles every <a> inside .legal-body as a mint inline link, and at
+   specificity 0-1-1 it beats .btn-primary's 0-1-0 colour — which rendered the CTA as
+   mint text on a mint pill, i.e. invisible. Restore button appearance for real buttons
+   inside prose. */
+.legal-body a.btn {
+  border-bottom: none;
+}
+
+.legal-body a.btn-primary { color: #04211d; }
+.legal-body a.btn-ghost   { color: var(--text); }
+
+/* Hero image at the top of a post. */
+.post-hero {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 32px 0 8px;
+}
+
 /* Closing call-to-action at the foot of a post. */
 .post-cta {
   margin-top: 48px;
