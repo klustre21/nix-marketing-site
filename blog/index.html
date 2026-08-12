@@ -74,19 +74,12 @@
       </div>
 
       <!-- POSTS:START
-           Replace EVERYTHING between these two markers. With one or more posts, the
-           whole region becomes a single list, newest first:
+           Add each new post as another <li class="post-item"> at the TOP of this list —
+           newest first. Follow the existing entry exactly: linked <h2>, a .post-meta
+           date, and a .post-excerpt of one or two sentences saying what the reader gets.
 
-             <ul class="post-list">
-               <li class="post-item">
-                 <h2><a href="the-slug.html">Post title</a></h2>
-                 <p class="post-meta">14 August 2026</p>
-                 <p class="post-excerpt">One or two sentences. What the reader gets.</p>
-               </li>
-             </ul>
-
-           The .blog-empty block below is the zero-post state and is discarded as soon as
-           the first post lands. Do not leave both in place. -->
+           The zero-post empty state (.blog-empty, styled in blog.css) was removed when
+           the first post landed. Restore it only if this list is ever emptied. -->
       <ul class="post-list">
         <li class="post-item">
           <h2><a href="zyn-withdrawal-timeline.html">The Zyn withdrawal timeline, hour by hour</a></h2>
